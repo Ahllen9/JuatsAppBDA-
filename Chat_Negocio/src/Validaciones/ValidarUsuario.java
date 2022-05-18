@@ -10,6 +10,7 @@ import FachadaPersistencia.FachadaDAO;
 import Implementaciones.ConexionBD;
 import Implementaciones.UsuarioDAO;
 import Interfaces.IUsuarioDAO;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -21,9 +22,19 @@ public class ValidarUsuario {
     public ValidarUsuario() {
     }
 
-//    public boolean validarNombreUsuario(){
-//        
-//    }
+    public boolean validarNombreUsuario(String nombreUsuario){
+        if (fachada.consultarNombre(nombreUsuario) == true) {
+            return false;
+        }
+        else return true;
+    }
+    
+    public boolean validarEmail(String nombreUsuario){
+        if (fachada.consultarNombre(nombreUsuario) == true) {
+            return false;
+        }
+        else return true;
+    }
     
     public boolean validarContrasenia(String email, String password){
         Usuario user = fachada.consultarUsuario(email, password);
@@ -42,5 +53,20 @@ public class ValidarUsuario {
             return true;
         }
         else return false;
+    }
+    
+    public boolean buscarID(ObjectId id){
+        if (fachada.consultarIDUsuario(id)) {
+            return true;
+        }
+        else return false;
+    }
+    
+    public void actualizarUsuario(Usuario usuario){
+        fachada.actualizar(usuario);
+    }
+    
+    public boolean agregarUsuario(Usuario usuario){
+        return fachada.agregar(usuario);
     }
 }

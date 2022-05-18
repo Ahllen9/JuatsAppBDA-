@@ -9,6 +9,7 @@ import Entidades.Usuario;
 import Implementaciones.ConexionBD;
 import Implementaciones.UsuarioDAO;
 import Interfaces.IUsuarioDAO;
+import Validaciones.ValidarUsuario;
 import com.sun.corba.se.spi.ior.ObjectId;
 import javax.swing.JOptionPane;
 
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author arturo
  */
 public class UsuariosFrm extends javax.swing.JFrame {
-
+    ValidarUsuario validar = new ValidarUsuario();
     /**
      * Creates new form UsuarioFrm
      */
@@ -282,18 +283,17 @@ public class UsuariosFrm extends javax.swing.JFrame {
                     , JOptionPane.ERROR_MESSAGE);
         }
         else{
-            IUsuarioDAO usuarioDao = new UsuarioDAO(new ConexionBD());
-            Usuario usuario = new Usuario(this.txtNombreUsuario.getText(),this.jComboSexo.getSelectedItem().toString(), 
-                    this.txtEmail.getText(),this.jpPassword.getText(), Integer.parseInt(this.txtEdad.getText()));
-            if (usuarioDao.consultarEmail(txtEmail.getText()) == true) {
-                JOptionPane.showMessageDialog(this,"El correo ya existe","información"
+           
+            if (validar.validarNombreUsuario(this.txtNombreUsuario.getText()) == true) {
+                JOptionPane.showMessageDialog(this,"El nombre de usuario ya existe","información"
                     , JOptionPane.INFORMATION_MESSAGE);
             }
-            else if (usuarioDao.consultarEmail(txtNombreUsuario.getText())) {
-                 JOptionPane.showMessageDialog(this,"El nombre de usuario ya existe","información"
+            else if (validar.validarEmail(this.txtEmail.getText()) == true) {
+                 JOptionPane.showMessageDialog(this,"El email ya existe","información"
                     , JOptionPane.INFORMATION_MESSAGE);
             }
-            else if(usuarioDao.agregar(usuario)){
+            else if(validar.agregarUsuario(new Usuario(this.txtNombreUsuario.getText(),this.jComboSexo.getSelectedItem().toString(),
+                    Integer.parseInt(this.txtEdad.getText()),this.txtEmail.getText(),this.jpPassword.getText()))){
             JOptionPane.showMessageDialog(this,"Se registro el usuario correctamente","información"
                     , JOptionPane.INFORMATION_MESSAGE);
             limpiar();

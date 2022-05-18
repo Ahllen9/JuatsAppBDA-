@@ -204,21 +204,35 @@ public class UsuariosEditarFrm extends javax.swing.JFrame {
     }
     
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-//        if (validar.(user.getId())==true) {
-//            user.setNombre(this.txtNombreUsuarioNuevo.getText());
-//            user.setNombre(this.jpPasswordNueva.getText());
-//            user.setNombre(this.txtEmail.getText());
-//            JOptionPane.showMessageDialog(this,"Usuario actualizado","Información"
-//                    , JOptionPane.INFORMATION_MESSAGE);
-//        }
-//        else if (usuarioDao.consultarEmail(this.txtEmail.getText())==true) {
-//            JOptionPane.showMessageDialog(this,"El email ya existe","ERROR"
-//                    , JOptionPane.ERROR_MESSAGE);
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(this,"No se pudo aztualizar","ERROR"
-//                    , JOptionPane.ERROR_MESSAGE);
-//        }
+        if (validar.buscarID(user.getId())==true) {
+            if (user.getNombre().equals(this.txtNombreUsuarioNuevo.getText()) && !user.getNombre().equals(null)) {
+                user.setNombre(this.txtNombreUsuarioNuevo.getText());
+            }
+            else if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == false) {
+                user.setNombre(this.txtNombreUsuarioNuevo.getText());
+            }
+            else if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == true){
+                JOptionPane.showMessageDialog(this,"El nombre de usuario ya existe","ERROR"
+                    , JOptionPane.ERROR_MESSAGE);
+            }
+            if (user.getEmail().equals(this.txtEmail.getText()) == false && !user.getEmail().equals(null)) {
+                user.setEmail(this.txtEmail.getText());
+            }
+            else if (validar.validarEmail(this.txtEmail.getText()) == true) {
+                JOptionPane.showMessageDialog(this,"El email ya existe","ERROR"
+                    , JOptionPane.ERROR_MESSAGE);
+            }
+            if (user.getPassword().equals(this.jpPasswordNueva.getText()) || !user.getPassword().equals(null)) {
+                user.setNombre(this.txtNombreUsuarioNuevo.getText());
+            }
+            validar.actualizarUsuario(user);
+            JOptionPane.showMessageDialog(this,"Usuario actualizado","Información"
+                    , JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"No se pudo actualizar","ERROR"
+                    , JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed

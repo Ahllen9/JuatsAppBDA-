@@ -91,7 +91,9 @@ public class UsuarioDAO implements IUsuarioDAO{
 
     @Override
     public boolean actualizar(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoCollection<Usuario> coleccion = this.getColeccion();
+        coleccion.updateOne(usuario);
+        return true;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Usuario {
         this.sexo = sexo;
     }
     
-    public Usuario(String nombre,String sexo, String email,String password,int edad) {
+    public Usuario(String nombre,String sexo,int edad, String email,String password) {
         this.password = password;
         this.email = email;
         this.nombre = nombre;
