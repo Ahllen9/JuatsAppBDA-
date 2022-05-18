@@ -10,7 +10,9 @@ import Entidades.Mensaje;
 import Entidades.Usuario;
 import Interfaces.IChatDAO;
 import Interfaces.IConexionBD;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,9 +28,14 @@ public class ChatDAO implements IChatDAO{
         this.baseDatos = conexion.crearConexion();
     }
     
+    private MongoCollection<Chat> getColeccion(){
+        return this.baseDatos.getCollection("Chats",Chat.class);
+    }
+    
     @Override
-    public void agregarChat(Usuario usuario, Mensaje mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void agregarChat(Chat chat) {
+        MongoCollection<Chat> coleccion = this.getColeccion();
+        coleccion.insertOne(chat);
     }
 
     @Override
@@ -43,7 +50,10 @@ public class ChatDAO implements IChatDAO{
 
     @Override
     public List<Chat> consultarChats() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoCollection<Chat> coleccion = this.getColeccion();
+        List<Chat> chats = new LinkedList<>(); 
+        coleccion.find().into(chats);
+        return chats;
     }
 
     @Override

@@ -131,6 +131,6 @@ public class Mensaje {
 
     @Override
     public String toString() {
-        return "Mensaje{" + "id=" + id + ", contenido=" + contenido + ", FechaDeEnvio=" + FechaDeEnvio + ", idsUsuarios=" + idsUsuarios + '}';
+        return contenido;
     }
 }

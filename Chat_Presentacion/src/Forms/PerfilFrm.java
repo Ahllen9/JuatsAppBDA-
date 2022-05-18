@@ -5,11 +5,16 @@
  */
 package Forms;
 
+import Entidades.Chat;
 import Entidades.Usuario;
+import Implementaciones.ChatDAO;
 import Implementaciones.ConexionBD;
 import Implementaciones.UsuarioDAO;
+import Interfaces.IChatDAO;
 import Interfaces.IUsuarioDAO;
+import Validaciones.ValidarUsuario;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,13 +23,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PerfilFrm extends javax.swing.JFrame {
     Usuario user;
+    ValidarUsuario validar = new ValidarUsuario();
     /**
      * Creates new form PerfilFrm
      */
     public PerfilFrm(Usuario user) {
         initComponents();
         this.setVisible(rootPaneCheckingEnabled);
-        this.llenarTabla();
+        validar.llenarTabla(this.jtChats);
         this.user = user;
         this.txtPerfilNombreUsuario.setText(user.getNombre());
     }
@@ -127,14 +133,14 @@ public class PerfilFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Amigos", "Mensajes"
+                "IDChat", "Amigos", "Mensajes"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -146,6 +152,11 @@ public class PerfilFrm extends javax.swing.JFrame {
             }
         });
         jspChats.setViewportView(jtChats);
+        if (jtChats.getColumnModel().getColumnCount() > 0) {
+            jtChats.getColumnModel().getColumn(0).setResizable(false);
+            jtChats.getColumnModel().getColumn(1).setResizable(false);
+            jtChats.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jbAbrirChat.setText("Abrir chat");
         jbAbrirChat.addActionListener(new java.awt.event.ActionListener() {
@@ -165,12 +176,11 @@ public class PerfilFrm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jspChats, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)))
+                        .addComponent(jspChats, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbAbrirChat, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbAbrirChat, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,18 +208,6 @@ public class PerfilFrm extends javax.swing.JFrame {
         new UsuariosEditarFrm(user);
         this.dispose();
     }//GEN-LAST:event_jbEditarActionPerformed
-    
-    private void llenarTabla(){
-        IUsuarioDAO usuarioDao = new UsuarioDAO(new ConexionBD());
-        List<Usuario> listaUsuarios = usuarioDao.consultarTodos();
-        DefaultTableModel modelo= (DefaultTableModel)this.jtChats.getModel();
-        modelo.setRowCount(0);
-        listaUsuarios.forEach(usuario -> {
-            Object[] fila = new Object[1];
-            fila[0]= usuario.getNombre();
-            modelo.addRow(fila);
-        });
-    }
     
     private void jbAbrirChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAbrirChatActionPerformed
         new ChatFrm(user);

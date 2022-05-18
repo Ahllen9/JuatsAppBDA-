@@ -84,8 +84,8 @@ public class FachadaDAO implements IFachada{
     }
 
     @Override
-    public void agregarChat(Usuario usuario, Mensaje mensaje) {
-        this.chat.agregarChat(usuario, mensaje);
+    public void agregarChat(Chat chat) {
+        this.chat.agregarChat(chat);
     }
 
     @Override

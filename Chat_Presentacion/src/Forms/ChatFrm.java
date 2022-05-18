@@ -43,11 +43,11 @@ public class ChatFrm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         txtDestinatario = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtxtaVentanaChat = new javax.swing.JTextArea();
         txtMensaje = new javax.swing.JTextField();
         jbEnviar = new javax.swing.JButton();
         jbCerrar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtextChat = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana de chat");
@@ -73,11 +73,6 @@ public class ChatFrm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jtxtaVentanaChat.setEditable(false);
-        jtxtaVentanaChat.setColumns(20);
-        jtxtaVentanaChat.setRows(5);
-        jScrollPane1.setViewportView(jtxtaVentanaChat);
-
         jbEnviar.setText("Enviar");
         jbEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,17 +87,20 @@ public class ChatFrm extends javax.swing.JFrame {
             }
         });
 
+        jtextChat.setEditable(false);
+        jScrollPane3.setViewportView(jtextChat);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMensaje)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMensaje, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbEnviar)
                         .addGap(12, 12, 12)
@@ -114,9 +112,9 @@ public class ChatFrm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -182,10 +180,10 @@ public class ChatFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jbCerrar;
     private javax.swing.JButton jbEnviar;
-    private javax.swing.JTextArea jtxtaVentanaChat;
+    private javax.swing.JTextPane jtextChat;
     private javax.swing.JTextField txtDestinatario;
     private javax.swing.JTextField txtMensaje;
     // End of variables declaration//GEN-END:variables

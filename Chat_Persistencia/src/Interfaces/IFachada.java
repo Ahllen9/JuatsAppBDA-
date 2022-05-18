@@ -79,7 +79,7 @@ public interface IFachada {
      * @param usuario
      * @param mensaje 
      */
-    void agregarChat(Usuario usuario, Mensaje mensaje);
+    void agregarChat(Chat chat);
     /**
      * Método que regresa todos los chats registrados
      * @return 

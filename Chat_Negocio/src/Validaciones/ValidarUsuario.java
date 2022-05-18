@@ -5,13 +5,19 @@
  */
 package Validaciones;
 
+import Entidades.Chat;
 import Entidades.Usuario;
 import FachadaPersistencia.FachadaDAO;
+import Implementaciones.ChatDAO;
 import Implementaciones.ConexionBD;
 import Implementaciones.UsuarioDAO;
+import Interfaces.IChatDAO;
 import Interfaces.IUsuarioDAO;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.bson.types.ObjectId;
 
 /**
@@ -78,4 +84,37 @@ public class ValidarUsuario {
         Matcher mather = pattern.matcher(email);
         return mather.find();
     }
+    
+    public void mostrarMensajes(){
+        fachada.consultarMensajes();
+    }
+    
+    public ObjectId getIdChatSeleccionado(JTable tablaChats){
+        int indiceFilaSeleccionada = tablaChats.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modeloTabla = (DefaultTableModel) tablaChats.getModel();
+            int indiceColumnaId = 0;
+            ObjectId IdChatSeleccionado = (ObjectId)modeloTabla.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
+            return IdChatSeleccionado;
+        }
+        else {
+            return null;
+        }       
+    }
+    
+    public void llenarTabla(JTable tabla){
+        List<Chat> listaUsuarios = fachada.consultarChats();
+        DefaultTableModel modelo= (DefaultTableModel)tabla.getModel();
+        modelo.setRowCount(0);
+        listaUsuarios.forEach(chat -> {
+            Object[] fila = new Object[2];
+            fila[0]= chat.getId().toString();
+            fila[1]= chat.getId().toString();
+            modelo.addRow(fila);
+        });
+        tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(0).setMinWidth(0);
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(0);
+    }
+    
 }

@@ -10,6 +10,7 @@ import Interfaces.IConexionBD;
 import Interfaces.IMensajeDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -40,7 +41,10 @@ public class MensajeDAO implements IMensajeDAO{
 
     @Override
     public List<Mensaje> consultarMensajes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoCollection<Mensaje> coleccion = this.getColeccion();
+        List<Mensaje> usuarios = new LinkedList<>(); 
+        coleccion.find().into(usuarios);
+        return usuarios;
     }
     
 }
