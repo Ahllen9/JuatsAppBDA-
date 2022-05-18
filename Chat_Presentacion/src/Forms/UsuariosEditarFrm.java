@@ -224,8 +224,14 @@ public class UsuariosEditarFrm extends javax.swing.JFrame {
             }
             if (!user.getEmail().equals(this.txtEmail.getText())){
                 if (validar.validarEmail(this.txtEmail.getText()) == true) {
-                user.setEmail(this.txtEmail.getText());
-                System.out.println("Email: si");
+                    if (validar.validarFormatoEmail(this.txtEmail.getText())==true) {
+                        user.setEmail(this.txtEmail.getText());
+                        System.out.println("Email: si");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"Formato de email no valido","ERROR"
+                    , JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 else if (validar.validarEmail(this.txtEmail.getText()) == false) {
                     JOptionPane.showMessageDialog(this,"El email ya existe","ERROR"

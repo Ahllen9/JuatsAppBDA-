@@ -123,15 +123,14 @@ public class UsuariosFrm extends javax.swing.JFrame {
                         .addComponent(jbGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jpConfirmarPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jpPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtConfirmarEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtEdad, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jComboSexo, javax.swing.GroupLayout.Alignment.LEADING, 0, 213, Short.MAX_VALUE)
-                        .addComponent(txtNombreUsuario, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(txtConfirmarEmail)
+                    .addComponent(txtEmail)
+                    .addComponent(txtEdad)
+                    .addComponent(jComboSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNombreUsuario)
+                    .addComponent(jpConfirmarPassword)
+                    .addComponent(jpPassword))
+                .addGap(65, 65, 65))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,6 +279,10 @@ public class UsuariosFrm extends javax.swing.JFrame {
         }
         else if (!this.txtConfirmarEmail.getText().equals(txtEmail.getText())) {
             JOptionPane.showMessageDialog(this,"Email no coincide","ERROR"
+                    , JOptionPane.ERROR_MESSAGE);
+        }
+        else if (validar.validarFormatoEmail(this.txtEmail.getText()) == false) {
+            JOptionPane.showMessageDialog(this,"Formato de email no valido","ERROR"
                     , JOptionPane.ERROR_MESSAGE);
         }
         else{
