@@ -15,6 +15,7 @@ import static com.mongodb.client.model.Filters.regex;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.BSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -92,8 +93,18 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public boolean actualizar(Usuario usuario) {
         MongoCollection<Usuario> coleccion = this.getColeccion();
-        coleccion.updateOne(usuario);
-        return true;
+        List<Usuario> usuariosActualizados = new LinkedList<>();
+        try{
+            Document valoresNuevos = new Document().append("nombre", usuario.getNombre()).
+                                        append("email", usuario.getEmail()).append("password", usuario.getPassword());
+            Document actualizar = new Document("$set",valoresNuevos);
+            coleccion.updateOne(new Document().append("_id", usuario.getId()),actualizar);
+            coleccion.find(new Document("_id", usuario.getId())).into(usuariosActualizados);
+            usuariosActualizados.get(0);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
 
     @Override

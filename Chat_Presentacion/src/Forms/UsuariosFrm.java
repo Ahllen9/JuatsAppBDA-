@@ -284,11 +284,11 @@ public class UsuariosFrm extends javax.swing.JFrame {
         }
         else{
            
-            if (validar.validarNombreUsuario(this.txtNombreUsuario.getText()) == true) {
+            if (validar.validarNombreUsuario(this.txtNombreUsuario.getText()) == false) {
                 JOptionPane.showMessageDialog(this,"El nombre de usuario ya existe","información"
                     , JOptionPane.INFORMATION_MESSAGE);
             }
-            else if (validar.validarEmail(this.txtEmail.getText()) == true) {
+            else if (validar.validarEmail(this.txtEmail.getText()) == false) {
                  JOptionPane.showMessageDialog(this,"El email ya existe","información"
                     , JOptionPane.INFORMATION_MESSAGE);
             }

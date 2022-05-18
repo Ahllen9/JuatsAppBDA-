@@ -218,6 +218,9 @@ public class UsuariosEditarFrm extends javax.swing.JFrame {
             if (user.getEmail().equals(this.txtEmail.getText()) == false && !user.getEmail().equals(null)) {
                 user.setEmail(this.txtEmail.getText());
             }
+            else if (validar.validarEmail(this.txtEmail.getText()) == false) {
+                user.setNombre(this.txtNombreUsuarioNuevo.getText());
+            }
             else if (validar.validarEmail(this.txtEmail.getText()) == true) {
                 JOptionPane.showMessageDialog(this,"El email ya existe","ERROR"
                     , JOptionPane.ERROR_MESSAGE);
@@ -225,9 +228,11 @@ public class UsuariosEditarFrm extends javax.swing.JFrame {
             if (user.getPassword().equals(this.jpPasswordNueva.getText()) || !user.getPassword().equals(null)) {
                 user.setNombre(this.txtNombreUsuarioNuevo.getText());
             }
-            validar.actualizarUsuario(user);
-            JOptionPane.showMessageDialog(this,"Usuario actualizado","Información"
+            else {
+                validar.actualizarUsuario(user);
+                JOptionPane.showMessageDialog(this,"Usuario actualizado","Información"
                     , JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         else {
             JOptionPane.showMessageDialog(this,"No se pudo actualizar","ERROR"
