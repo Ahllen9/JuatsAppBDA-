@@ -203,27 +203,12 @@ public class UsuariosEditarFrm extends javax.swing.JFrame {
         this.jpPasswordNueva.setText(user.getPassword());
     }
     
-    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        if (validar.buscarID(user.getId())==true) {
-            if (user.getNombre().equals(this.txtNombreUsuarioNuevo.getText()) && !user.getNombre().equals(null) && 
-                    user.getEmail().equals(this.txtEmail.getText()) == false && !user.getEmail().equals(null)) {
-                user.setNombre(this.txtNombreUsuarioNuevo.getText());
-                user.setEmail(this.txtEmail.getText());
-            }
-            else  if (!user.getNombre().equals(this.txtNombreUsuarioNuevo.getText())){
-                if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == true) {
-                user.setNombre(this.txtNombreUsuarioNuevo.getText());
-                System.out.println("Nombre: si");
-                }
-                else if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == false){
-                    JOptionPane.showMessageDialog(this,"El nombre de usuario ya existe","ERROR"
-                        , JOptionPane.ERROR_MESSAGE);
-                    this.limpiar();
-                    System.out.println("Nombre: no");
-                }
-            }
-            if (!user.getEmail().equals(this.txtEmail.getText())){
+    public void validarEdicionEmail(Usuario usuario){
+        System.out.println("si entre :c al metodo");
+        if (!user.getEmail().equals(null)){
+            System.out.println("No existe");
                 if (validar.validarEmail(this.txtEmail.getText()) == true) {
+                    System.out.println("si entre :c a validarte el correo");
                     if (validar.validarFormatoEmail(this.txtEmail.getText())==true) {
                         user.setEmail(this.txtEmail.getText());
                         System.out.println("Email: si");
@@ -240,15 +225,40 @@ public class UsuariosEditarFrm extends javax.swing.JFrame {
                     System.out.println("Email: no");
                 }
             }
-           if (user.getPassword().equals(this.jpPasswordNueva.getText()) || !user.getPassword().equals(null)) {
+    }
+    
+    public void validarEdicionNombre(Usuario usuario){
+         if (!user.getNombre().equals(this.txtNombreUsuarioNuevo.getText())){
+                if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == true) {
                 user.setNombre(this.txtNombreUsuarioNuevo.getText());
+                System.out.println("Nombre: si");
+                }
+                else if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == false){
+                    JOptionPane.showMessageDialog(this,"El nombre de usuario ya existe","ERROR"
+                        , JOptionPane.ERROR_MESSAGE);
+                    this.limpiar();
+                    System.out.println("Nombre: no");
+                }
             }
-            else {
-                validar.actualizarUsuario(user);
-                JOptionPane.showMessageDialog(this,"Usuario actualizado","Información"
-                    , JOptionPane.INFORMATION_MESSAGE);
-                
+    }
+    
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        if (validar.buscarID(user.getId())==true) {
+            if (user.getNombre().equals(this.txtNombreUsuarioNuevo.getText()) && !user.getNombre().equals(null) && 
+                    user.getEmail().equals(this.txtEmail.getText()) == false && !user.getEmail().equals(null)) {
+                user.setNombre(this.txtNombreUsuarioNuevo.getText());
+                user.setEmail(this.txtEmail.getText());
             }
+            else if (user.getPassword().equals(this.jpPasswordNueva.getText()) || !user.getPassword().equals(null)) {
+                user.setNombre(this.txtNombreUsuarioNuevo.getText());
+                System.out.println("Contraseña si");
+            }
+            
+            this.validarEdicionNombre(user);
+            this.validarEdicionEmail(user);
+            validar.actualizarUsuario(user);
+            JOptionPane.showMessageDialog(this,"Usuario actualizado","Información"
+                , JOptionPane.INFORMATION_MESSAGE);   
         }
         else {
             JOptionPane.showMessageDialog(this,"No se pudo actualizar","ERROR"
