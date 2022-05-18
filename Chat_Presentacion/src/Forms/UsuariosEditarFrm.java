@@ -205,38 +205,49 @@ public class UsuariosEditarFrm extends javax.swing.JFrame {
     
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         if (validar.buscarID(user.getId())==true) {
-            if (user.getNombre().equals(this.txtNombreUsuarioNuevo.getText()) && !user.getNombre().equals(null)) {
+            if (user.getNombre().equals(this.txtNombreUsuarioNuevo.getText()) && !user.getNombre().equals(null) && 
+                    user.getEmail().equals(this.txtEmail.getText()) == false && !user.getEmail().equals(null)) {
                 user.setNombre(this.txtNombreUsuarioNuevo.getText());
-            }
-            else if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == false) {
-                user.setNombre(this.txtNombreUsuarioNuevo.getText());
-            }
-            else if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == true){
-                JOptionPane.showMessageDialog(this,"El nombre de usuario ya existe","ERROR"
-                    , JOptionPane.ERROR_MESSAGE);
-            }
-            if (user.getEmail().equals(this.txtEmail.getText()) == false && !user.getEmail().equals(null)) {
                 user.setEmail(this.txtEmail.getText());
             }
-            else if (validar.validarEmail(this.txtEmail.getText()) == false) {
+            else  if (!user.getNombre().equals(this.txtNombreUsuarioNuevo.getText())){
+                if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == true) {
                 user.setNombre(this.txtNombreUsuarioNuevo.getText());
+                System.out.println("Nombre: si");
+                }
+                else if (validar.validarNombreUsuario(this.txtNombreUsuarioNuevo.getText()) == false){
+                    JOptionPane.showMessageDialog(this,"El nombre de usuario ya existe","ERROR"
+                        , JOptionPane.ERROR_MESSAGE);
+                    this.limpiar();
+                    System.out.println("Nombre: no");
+                }
             }
-            else if (validar.validarEmail(this.txtEmail.getText()) == true) {
-                JOptionPane.showMessageDialog(this,"El email ya existe","ERROR"
-                    , JOptionPane.ERROR_MESSAGE);
+            if (!user.getEmail().equals(this.txtEmail.getText())){
+                if (validar.validarEmail(this.txtEmail.getText()) == true) {
+                user.setEmail(this.txtEmail.getText());
+                System.out.println("Email: si");
+                }
+                else if (validar.validarEmail(this.txtEmail.getText()) == false) {
+                    JOptionPane.showMessageDialog(this,"El email ya existe","ERROR"
+                        , JOptionPane.ERROR_MESSAGE);
+                    this.limpiar();
+                    System.out.println("Email: no");
+                }
             }
-            if (user.getPassword().equals(this.jpPasswordNueva.getText()) || !user.getPassword().equals(null)) {
+           if (user.getPassword().equals(this.jpPasswordNueva.getText()) || !user.getPassword().equals(null)) {
                 user.setNombre(this.txtNombreUsuarioNuevo.getText());
             }
             else {
                 validar.actualizarUsuario(user);
                 JOptionPane.showMessageDialog(this,"Usuario actualizado","Información"
                     , JOptionPane.INFORMATION_MESSAGE);
+                
             }
         }
         else {
             JOptionPane.showMessageDialog(this,"No se pudo actualizar","ERROR"
                     , JOptionPane.ERROR_MESSAGE);
+            this.limpiar();
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
