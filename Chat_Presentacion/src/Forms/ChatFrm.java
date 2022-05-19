@@ -5,6 +5,7 @@
  */
 package Forms;
 
+import Entidades.Chat;
 import Entidades.Mensaje;
 import Entidades.Usuario;
 import Implementaciones.ConexionBD;
@@ -22,16 +23,18 @@ import javax.swing.JOptionPane;
  */
 public class ChatFrm extends javax.swing.JFrame {
     Usuario user;
+    Chat chat;
     Calendar fechaEnvio = new GregorianCalendar();
     ValidarUsuario validar = new ValidarUsuario();
     /**
      * Creates new form ChatFrm
      */
-    public ChatFrm(Usuario user) {
+    public ChatFrm(Usuario user, Chat chat) {
         initComponents();
         this.setVisible(rootPaneCheckingEnabled);
         this.user = user;
-        
+        this.chat = chat;
+        this.txtDestinatario.setText(chat.getUsuarioReceptor().getNombre());
     }
 
     /**
@@ -139,9 +142,11 @@ public class ChatFrm extends javax.swing.JFrame {
                     , JOptionPane.INFORMATION_MESSAGE);
         }
         else{
-            IMensajeDAO mensajeDao = new MensajeDAO(new ConexionBD());
-//            Mensaje mensaje = new Mensaje(user.getId(), ,this.txtMensaje.getText(),this.fechaEnvio.getTime());
-//            mensajeDao.agregar(mensaje);
+            JOptionPane.showMessageDialog(this,"Mensaje vacío","información"
+                    , JOptionPane.INFORMATION_MESSAGE);
+            this.txtMensaje.setText("");
+            Mensaje mensaje = new Mensaje(user.getId(),this.chat.getId() ,this.txtMensaje.getText(),this.fechaEnvio.getTime());
+            validar.enviarMensaje(mensaje);
         }
     }//GEN-LAST:event_jbEnviarActionPerformed
 

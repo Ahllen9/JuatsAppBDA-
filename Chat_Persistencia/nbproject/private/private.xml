@@ -4,7 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/arturo/Documents/JuatsApp_218540/Chat_Persistencia/src/Implementaciones/MensajeDAO.java</file>
-            <file>file:/C:/Users/arturo/Documents/JuatsApp_218540/Chat_Persistencia/src/Implementaciones/ChatDAO.java</file>
+            <file>file:/C:/Users/arturo/Documents/JuatsApp_218540/Chat_Persistencia/src/Implementaciones/UsuarioDAO.java</file>
+            <file>file:/C:/Users/arturo/Documents/JuatsApp_218540/Chat_Persistencia/src/Interfaces/IChatDAO.java</file>
+            <file>file:/C:/Users/arturo/Documents/JuatsApp_218540/Chat_Persistencia/src/Interfaces/IMensajeDAO.java</file>
+            <file>file:/C:/Users/arturo/Documents/JuatsApp_218540/Chat_Persistencia/src/Interfaces/IConexionBD.java</file>
+            <file>file:/C:/Users/arturo/Documents/JuatsApp_218540/Chat_Persistencia/src/Implementaciones/ConexionBD.java</file>
         </group>
     </open-files>
 </project-private>

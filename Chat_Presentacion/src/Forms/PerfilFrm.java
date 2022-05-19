@@ -223,8 +223,17 @@ public class PerfilFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jbEditarActionPerformed
     
     private void jbAbrirChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAbrirChatActionPerformed
-        new ChatFrm(user);
-        this.dispose();
+        if (validar.entrarChat(this.jtChats) == true) {
+            Chat chat = validar.regresaChart(jtChats);
+              JOptionPane.showMessageDialog(this,"Se accedió al char correctamente","Información"
+                    , JOptionPane.INFORMATION_MESSAGE);
+            new ChatFrm(this.user, chat);
+            this.dispose();
+        }
+        else {
+              JOptionPane.showMessageDialog(this,"Formato de email no valido","ERROR"
+                    , JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jbAbrirChatActionPerformed
 
     private void jbCrearChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearChatActionPerformed

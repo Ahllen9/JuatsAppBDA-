@@ -105,6 +105,10 @@ public interface IFachada {
      * Método que regresa todos un chat
      * @return 
      */
-    List<Chat> consultarChat(Chat chat);
-    
+    Chat consultarChat(ObjectId id);
+    /**
+     * Comprueba si el cha existe
+     * @return 
+     */
+    boolean chatExiste(ObjectId id);
 }

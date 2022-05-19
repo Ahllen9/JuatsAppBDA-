@@ -104,12 +104,17 @@ public class FachadaDAO implements IFachada{
     }
 
     @Override
-    public List<Chat> consultarChat(Chat chat) {
-        return this.chat.consultarChat(chat);
+    public Usuario consultarUsuarioNombre(String nombre) {
+        return this.usuario.consultarUsuarioNombre(nombre);
     }
 
     @Override
-    public Usuario consultarUsuarioNombre(String nombre) {
-        return this.usuario.consultarUsuarioNombre(nombre);
+    public Chat consultarChat(ObjectId id) {
+        return chat.consultarChat(id);
+    }
+
+    @Override
+    public boolean chatExiste(ObjectId id) {
+        return chat.chatExiste(id);
     }
 }

@@ -9,6 +9,7 @@ import Entidades.Chat;
 import Entidades.Mensaje;
 import Entidades.Usuario;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -37,9 +38,13 @@ public interface IChatDAO {
      */
     List<Chat> consultarChats();
     /**
-     * Método que regresa todos un chat
+     * Método que regresa un chat
      * @return 
      */
-    List<Chat> consultarChat(Chat chat);
-    
+    Chat consultarChat(ObjectId id);
+    /**
+     * Comprueba si el cha existe
+     * @return 
+     */
+    boolean chatExiste(ObjectId id);
 }

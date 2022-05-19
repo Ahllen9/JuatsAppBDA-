@@ -6,6 +6,7 @@
 package Validaciones;
 
 import Entidades.Chat;
+import Entidades.Mensaje;
 import Entidades.Usuario;
 import FachadaPersistencia.FachadaDAO;
 import Implementaciones.ChatDAO;
@@ -85,8 +86,21 @@ public class ValidarUsuario {
         return mather.find();
     }
     
-    
-    
+   public boolean entrarChat(JTable tablaChats){
+       if (fachada.chatExiste(this.getIdChatSeleccionado(tablaChats)) == true) {
+           return true;
+       }
+       else return false;
+   }
+   
+   public Chat regresaChart(JTable tablaChats){
+       return fachada.consultarChat(this.getIdChatSeleccionado(tablaChats));
+   }
+   
+   public void enviarMensaje(Mensaje mennsaje){
+       fachada.agregar(mennsaje);
+   }
+   
     public ObjectId getIdChatSeleccionado(JTable tablaChats){
         int indiceFilaSeleccionada = tablaChats.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {

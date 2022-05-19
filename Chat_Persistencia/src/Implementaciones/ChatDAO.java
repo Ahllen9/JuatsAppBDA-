@@ -10,10 +10,13 @@ import Entidades.Mensaje;
 import Entidades.Usuario;
 import Interfaces.IChatDAO;
 import Interfaces.IConexionBD;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -58,8 +61,20 @@ public class ChatDAO implements IChatDAO{
     }
 
     @Override
-    public List<Chat> consultarChat(Chat chat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Chat consultarChat(ObjectId id) {
+        FindIterable<Chat> registros = this.getColeccion().find(new Document().append("_id",id));
+        Chat chat = registros.first();
+        return chat;
+        
+    }
+
+    @Override
+    public boolean chatExiste(ObjectId id) {
+        FindIterable<Chat> registros = this.getColeccion().find(new Document().append("_id",id));
+        if (registros.first() == null) {
+            return false;
+        }
+        else return true;
     }
     
 }
