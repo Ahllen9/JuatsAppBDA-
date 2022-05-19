@@ -97,8 +97,8 @@ public class ValidarUsuario {
        return fachada.consultarChat(this.getIdChatSeleccionado(tablaChats));
    }
    
-   public void enviarMensaje(Mensaje mennsaje){
-       fachada.agregar(mennsaje);
+   public void enviarMensaje(Mensaje mensaje){
+       fachada.agregar(mensaje);
    }
    
     public ObjectId getIdChatSeleccionado(JTable tablaChats){
@@ -141,4 +141,12 @@ public class ValidarUsuario {
     public boolean crearChat(Chat chat){
         return fachada.agregarChat(chat);
     }
+    
+    public void cargarMensajes(ObjectId idchat){
+        fachada.consultarMensajes(idchat).forEach(chat -> {
+            System.out.println(chat);
+        });
+    }
+    
 }
+
