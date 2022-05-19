@@ -79,8 +79,8 @@ public class FachadaDAO implements IFachada{
     }
 
     @Override
-    public List<Mensaje> consultarMensajes() {
-        return this.mensaje.consultarMensajes();
+    public List<Mensaje> consultarMensajes(ObjectId idchat) {
+        return this.mensaje.consultarMensajes(idchat);
     }
 
     @Override

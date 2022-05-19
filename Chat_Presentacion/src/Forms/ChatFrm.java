@@ -10,6 +10,7 @@ import Entidades.Usuario;
 import Implementaciones.ConexionBD;
 import Implementaciones.MensajeDAO;
 import Interfaces.IMensajeDAO;
+import Validaciones.ValidarUsuario;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -22,6 +23,7 @@ import javax.swing.JOptionPane;
 public class ChatFrm extends javax.swing.JFrame {
     Usuario user;
     Calendar fechaEnvio = new GregorianCalendar();
+    ValidarUsuario validar = new ValidarUsuario();
     /**
      * Creates new form ChatFrm
      */
@@ -138,8 +140,8 @@ public class ChatFrm extends javax.swing.JFrame {
         }
         else{
             IMensajeDAO mensajeDao = new MensajeDAO(new ConexionBD());
-            Mensaje mensaje = new Mensaje(user.getId(), this.txtMensaje.getText(),this.fechaEnvio.getTime());
-            mensajeDao.agregar(mensaje);
+//            Mensaje mensaje = new Mensaje(user.getId(), ,this.txtMensaje.getText(),this.fechaEnvio.getTime());
+//            mensajeDao.agregar(mensaje);
         }
     }//GEN-LAST:event_jbEnviarActionPerformed
 

@@ -79,7 +79,7 @@ public interface IFachada {
      * Método que regresa todos los mensajes registrados
      * @return 
      */
-    List<Mensaje> consultarMensajes();
+    List<Mensaje> consultarMensajes(ObjectId idchat);
     /**
      * Método que agrega los datos dados por parámetro
      * @param usuario

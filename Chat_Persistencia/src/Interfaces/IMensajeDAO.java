@@ -7,6 +7,7 @@ package Interfaces;
 
 import Entidades.Mensaje;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -22,5 +23,5 @@ public interface IMensajeDAO {
      * Método que regresa todos los mensajes registrados
      * @return 
      */
-    List<Mensaje> consultarMensajes();
+    List<Mensaje> consultarMensajes(ObjectId idchat);
 }

@@ -85,9 +85,7 @@ public class ValidarUsuario {
         return mather.find();
     }
     
-    public void mostrarMensajes(){
-        fachada.consultarMensajes();
-    }
+    
     
     public ObjectId getIdChatSeleccionado(JTable tablaChats){
         int indiceFilaSeleccionada = tablaChats.getSelectedRow();

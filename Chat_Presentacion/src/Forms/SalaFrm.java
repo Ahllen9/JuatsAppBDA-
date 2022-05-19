@@ -172,6 +172,8 @@ public class SalaFrm extends javax.swing.JFrame {
                 if (validar.crearChat(chat) == true) {
                 JOptionPane.showMessageDialog(this,"Se creo el chat correctamente","información"
                         , JOptionPane.INFORMATION_MESSAGE);
+                this.txtInvitado.setText("");
+                this.txtNombreSala.setText("");
                 }
                 else {
                 JOptionPane.showMessageDialog(this,"Error al crear el chat","información"

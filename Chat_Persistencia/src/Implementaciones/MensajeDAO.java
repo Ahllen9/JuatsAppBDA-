@@ -12,6 +12,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -40,7 +41,7 @@ public class MensajeDAO implements IMensajeDAO{
     }
 
     @Override
-    public List<Mensaje> consultarMensajes() {
+    public List<Mensaje> consultarMensajes(ObjectId idchat) {
         MongoCollection<Mensaje> coleccion = this.getColeccion();
         List<Mensaje> usuarios = new LinkedList<>(); 
         coleccion.find().into(usuarios);

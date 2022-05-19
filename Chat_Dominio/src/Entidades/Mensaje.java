@@ -19,6 +19,7 @@ import org.bson.types.ObjectId;
 public class Mensaje {
     private ObjectId id;
     private ObjectId idUsuarioEmisor;
+    private ObjectId idChat;
     private String contenido;
     private Date FechaDeEnvio;
     private List<ObjectId> idsUsuarios;
@@ -45,7 +46,8 @@ public class Mensaje {
         this.idsUsuarios = idsUsuarios;
     }
 
-    public Mensaje(ObjectId idUsuarioEmisor, String contenido, Date FechaDeEnvio) {
+    public Mensaje(ObjectId idUsuarioEmisor, ObjectId idChat, String contenido, Date FechaDeEnvio) {
+        this.idChat = idChat;
         this.idUsuarioEmisor = idUsuarioEmisor;
         this.contenido = contenido;
         this.FechaDeEnvio = FechaDeEnvio;
