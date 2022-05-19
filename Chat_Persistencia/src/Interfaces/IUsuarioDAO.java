@@ -62,4 +62,9 @@ public interface IUsuarioDAO {
      * @return 
      */
     List<Usuario> consultarTodos();
+    /**
+     * Metodo que regresa el usuario buscandolo por el nombre dado por parametro
+     * @return 
+     */
+    Usuario consultarUsuarioNombre(String nombre);
 }

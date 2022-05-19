@@ -70,6 +70,12 @@ public interface IFachada {
      */
     void agregar(Mensaje mensaje);
     /**
+     * Metodo que regresa el usuario buscado por el nombre dado por parametro
+     * @param nombre
+     * @return 
+     */
+    Usuario consultarUsuarioNombre(String nombre);
+    /**
      * Método que regresa todos los mensajes registrados
      * @return 
      */
@@ -79,7 +85,7 @@ public interface IFachada {
      * @param usuario
      * @param mensaje 
      */
-    void agregarChat(Chat chat);
+    boolean agregarChat(Chat chat);
     /**
      * Método que regresa todos los chats registrados
      * @return 

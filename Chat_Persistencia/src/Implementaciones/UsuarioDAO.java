@@ -115,5 +115,12 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
         else return true;
     }
+
+    @Override
+    public Usuario consultarUsuarioNombre(String nombre) {
+        FindIterable<Usuario> registros = this.getColeccion().find(new Document().append("nombre",nombre));
+        Usuario user = registros.first();
+        return user;
+    }
     
 }

@@ -20,7 +20,7 @@ public interface IChatDAO {
      * @param usuario
      * @param mensaje 
      */
-    void agregarChat(Chat chat);
+    boolean agregarChat(Chat chat);
     /**
      * Método que regresa todos los chats registrados
      * @return 

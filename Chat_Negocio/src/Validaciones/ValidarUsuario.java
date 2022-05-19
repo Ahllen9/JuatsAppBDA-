@@ -102,14 +102,23 @@ public class ValidarUsuario {
         }       
     }
     
+    public boolean validarUsuarioNombre(String nombre){
+        return fachada.consultarNombre(nombre);
+    }
+    
+    public Usuario regresarUsuarioNombre(String nombre){
+        return fachada.consultarUsuarioNombre(nombre);
+    }
+    
     public void llenarTabla(JTable tabla){
         List<Chat> listaUsuarios = fachada.consultarChats();
         DefaultTableModel modelo= (DefaultTableModel)tabla.getModel();
         modelo.setRowCount(0);
         listaUsuarios.forEach(chat -> {
-            Object[] fila = new Object[2];
+            Object[] fila = new Object[3];
             fila[0]= chat.getId().toString();
-            fila[1]= chat.getId().toString();
+            fila[1]=chat.getNombre();
+            fila[2]= chat.getUsuarioReceptor().getNombre();
             modelo.addRow(fila);
         });
         tabla.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -117,4 +126,7 @@ public class ValidarUsuario {
         tabla.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
     
+    public boolean crearChat(Chat chat){
+        return fachada.agregarChat(chat);
+    }
 }

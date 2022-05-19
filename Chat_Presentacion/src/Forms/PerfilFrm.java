@@ -14,6 +14,7 @@ import Interfaces.IChatDAO;
 import Interfaces.IUsuarioDAO;
 import Validaciones.ValidarUsuario;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,6 +55,7 @@ public class PerfilFrm extends javax.swing.JFrame {
         jspChats = new javax.swing.JScrollPane();
         jtChats = new javax.swing.JTable();
         jbAbrirChat = new javax.swing.JButton();
+        jbCrearChat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Perfil del usuario");
@@ -133,7 +135,7 @@ public class PerfilFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IDChat", "Amigos", "Mensajes"
+                "IDChat", "Sala", "Amigos"
             }
         ) {
             Class[] types = new Class [] {
@@ -165,6 +167,13 @@ public class PerfilFrm extends javax.swing.JFrame {
             }
         });
 
+        jbCrearChat.setText("Crear chat");
+        jbCrearChat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCrearChatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,6 +188,8 @@ public class PerfilFrm extends javax.swing.JFrame {
                         .addComponent(jspChats, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbCrearChat, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbAbrirChat, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -192,7 +203,9 @@ public class PerfilFrm extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jspChats, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbAbrirChat, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbAbrirChat, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(jbCrearChat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -214,6 +227,11 @@ public class PerfilFrm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbAbrirChatActionPerformed
 
+    private void jbCrearChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearChatActionPerformed
+        new SalaFrm(user);
+        this.dispose();
+    }//GEN-LAST:event_jbCrearChatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -226,6 +244,7 @@ public class PerfilFrm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton jbAbrirChat;
     private javax.swing.JButton jbCerrar;
+    private javax.swing.JButton jbCrearChat;
     private javax.swing.JButton jbEditar;
     private javax.swing.JScrollPane jspChats;
     private javax.swing.JTable jtChats;

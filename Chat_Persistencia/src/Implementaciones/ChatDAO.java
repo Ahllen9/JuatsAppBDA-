@@ -33,9 +33,10 @@ public class ChatDAO implements IChatDAO{
     }
     
     @Override
-    public void agregarChat(Chat chat) {
+    public boolean agregarChat(Chat chat) {
         MongoCollection<Chat> coleccion = this.getColeccion();
         coleccion.insertOne(chat);
+        return true;
     }
 
     @Override

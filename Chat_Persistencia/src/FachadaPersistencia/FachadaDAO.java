@@ -84,8 +84,8 @@ public class FachadaDAO implements IFachada{
     }
 
     @Override
-    public void agregarChat(Chat chat) {
-        this.chat.agregarChat(chat);
+    public boolean agregarChat(Chat chat) {
+        return this.chat.agregarChat(chat);
     }
 
     @Override
@@ -106,6 +106,11 @@ public class FachadaDAO implements IFachada{
     @Override
     public List<Chat> consultarChat(Chat chat) {
         return this.chat.consultarChat(chat);
+    }
+
+    @Override
+    public Usuario consultarUsuarioNombre(String nombre) {
+        return this.usuario.consultarUsuarioNombre(nombre);
     }
     
 }

@@ -15,61 +15,41 @@ import java.util.Objects;
  */
 public class Chat {
     private ObjectId id;
-    private List<ObjectId> idsUsuarios;
     private List<Mensaje> mensajes;
-    private Usuario usuario;
-    private Mensaje mensaje;
+    private Usuario usuarioEmisor;
+    private Usuario usuarioReceptor;
+    private String nombre;
 
     public Chat() {
     }
 
-    public Chat(ObjectId id) {
+    public Chat(ObjectId id, Usuario usuarioEmisor, Usuario usuarioReceptor, List<Mensaje> mensajes) {
         this.id = id;
-    }
-
-    public Chat(ObjectId id, List<ObjectId> idsUsuarios, List<Mensaje> mensajes) {
-        this.id = id;
-        this.idsUsuarios = idsUsuarios;
         this.mensajes = mensajes;
+        this.usuarioEmisor = usuarioEmisor;
+        this.usuarioReceptor = usuarioReceptor;
     }
 
-    public Chat(Usuario usuario, Mensaje mensaje) {
-        this.usuario = usuario;
-        this.mensaje = mensaje;
+    public Chat(String nombre, Usuario usuarioEmisor, Usuario usuarioReceptor) {
+        this.nombre = nombre;
+        this.usuarioEmisor = usuarioEmisor;
+        this.usuarioReceptor = usuarioReceptor;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-
-    public Mensaje getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(Mensaje mensaje) {
-        this.mensaje = mensaje;
-    }
-    
-    
-
+ 
     public ObjectId getId() {
         return id;
     }
 
     public void setId(ObjectId id) {
         this.id = id;
-    }
-
-    public List<ObjectId> getIdsUsuarios() {
-        return idsUsuarios;
-    }
-
-    public void setIdsUsuarios(List<ObjectId> idsUsuarios) {
-        this.idsUsuarios = idsUsuarios;
     }
 
     public List<Mensaje> getMensajes() {
@@ -80,10 +60,26 @@ public class Chat {
         this.mensajes = mensajes;
     }
 
+    public Usuario getUsuarioEmisor() {
+        return usuarioEmisor;
+    }
+
+    public void setUsuarioEmisor(Usuario usuarioEmisor) {
+        this.usuarioEmisor = usuarioEmisor;
+    }
+
+    public Usuario getUsuarioReceptor() {
+        return usuarioReceptor;
+    }
+
+    public void setUsuarioReceptor(Usuario usuarioReceptor) {
+        this.usuarioReceptor = usuarioReceptor;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -107,9 +103,8 @@ public class Chat {
 
     @Override
     public String toString() {
-        return "Chat{" + "id=" + id + ", idsUsuarios=" + idsUsuarios + ", idsvehiculos=" + mensajes + '}';
+        return "Chat{" + "id=" + id + ", mensajes=" + mensajes + ", usuarioEmisor=" + usuarioEmisor + ", usuarioReceptor=" + usuarioReceptor + ", nombre=" + nombre + '}';
     }
-    
-    
+   
 }
 
