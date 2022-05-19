@@ -22,6 +22,7 @@ public class SalaFrm extends javax.swing.JFrame {
      */
     public SalaFrm(Usuario user) {
         initComponents();
+        this.setVisible(rootPaneCheckingEnabled);
         this.user = user;
     }
 
@@ -161,20 +162,21 @@ public class SalaFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
-        if (validar.validarNombreUsuario(this.txtInvitado.getText()) == false) {
-            Chat chat = new Chat(this.txtNombreSala.getText(),this.user, validar.regresarUsuarioNombre(this.txtInvitado.getText()));
-            if (validar.crearChat(chat) == true) {
-            JOptionPane.showMessageDialog(this,"Se creo el chat correctamente","información"
-                    , JOptionPane.INFORMATION_MESSAGE);
-            }
-            else {
-            JOptionPane.showMessageDialog(this,"Error al crear el chat","información"
-                    , JOptionPane.INFORMATION_MESSAGE);
-            }
+        if (validar.validarNombreUsuario(this.txtInvitado.getText()) == true) {
+            JOptionPane.showMessageDialog(this,"Error al encontrar el nombre del invitado","error"
+                    , JOptionPane.ERROR_MESSAGE); 
         }
         else {
-            JOptionPane.showMessageDialog(this,"Error al encontrar el nombre del invitado","información"
-                    , JOptionPane.INFORMATION_MESSAGE);
+                Usuario usuarioReceptor =  validar.regresarUsuarioNombre(this.txtInvitado.getText());
+                Chat chat = new Chat(this.txtNombreSala.getText(),this.user,usuarioReceptor);
+                if (validar.crearChat(chat) == true) {
+                JOptionPane.showMessageDialog(this,"Se creo el chat correctamente","información"
+                        , JOptionPane.INFORMATION_MESSAGE);
+                }
+                else {
+                JOptionPane.showMessageDialog(this,"Error al crear el chat","información"
+                        , JOptionPane.INFORMATION_MESSAGE);
+                }
             }
     }//GEN-LAST:event_jbCrearActionPerformed
 

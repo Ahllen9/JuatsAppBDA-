@@ -112,5 +112,4 @@ public class FachadaDAO implements IFachada{
     public Usuario consultarUsuarioNombre(String nombre) {
         return this.usuario.consultarUsuarioNombre(nombre);
     }
-    
 }

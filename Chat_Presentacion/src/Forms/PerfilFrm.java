@@ -135,7 +135,7 @@ public class PerfilFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IDChat", "Sala", "Amigos"
+                "IDChat", "Sala", "Amigo"
             }
         ) {
             Class[] types = new Class [] {

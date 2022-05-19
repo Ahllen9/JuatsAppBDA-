@@ -5,9 +5,9 @@
  */
 package Entidades;
 
-import com.sun.corba.se.spi.ior.ObjectId;
 import java.util.List;
 import java.util.Objects;
+import org.bson.types.ObjectId;
 
 /**
  *

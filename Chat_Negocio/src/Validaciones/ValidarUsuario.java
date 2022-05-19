@@ -116,8 +116,8 @@ public class ValidarUsuario {
         modelo.setRowCount(0);
         listaUsuarios.forEach(chat -> {
             Object[] fila = new Object[3];
-            fila[0]= chat.getId().toString();
-            fila[1]=chat.getNombre();
+            fila[0]= chat.getId();
+            fila[1]= chat.getNombre();
             fila[2]= chat.getUsuarioReceptor().getNombre();
             modelo.addRow(fila);
         });
