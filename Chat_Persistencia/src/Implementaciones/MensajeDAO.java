@@ -5,13 +5,16 @@
  */
 package Implementaciones;
 
+import Entidades.Chat;
 import Entidades.Mensaje;
 import Interfaces.IConexionBD;
 import Interfaces.IMensajeDAO;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
@@ -42,10 +45,10 @@ public class MensajeDAO implements IMensajeDAO{
 
     @Override
     public List<Mensaje> consultarMensajes(ObjectId idchat) {
-        MongoCollection<Mensaje> coleccion = this.getColeccion();
-        List<Mensaje> usuarios = new LinkedList<>(); 
-        coleccion.find().into(usuarios);
-        return usuarios;
+        FindIterable<Mensaje> coleccion = this.getColeccion().find(new Document().append("idChat",idchat));
+        List<Mensaje> mensajes = new LinkedList<>(); 
+        coleccion.into(mensajes);
+        return mensajes;
     }
     
 }

@@ -134,15 +134,16 @@ public class ChatFrm extends javax.swing.JFrame {
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
         new PerfilFrm(user);
         this.dispose();
+       
     }//GEN-LAST:event_jbCerrarActionPerformed
 
     private void jbEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnviarActionPerformed
-        if (this.txtMensaje.getText().equalsIgnoreCase("")) {
+        if (this.txtMensaje.getText().equals("")) {
             JOptionPane.showMessageDialog(this,"Mensaje vacío","información"
                     , JOptionPane.INFORMATION_MESSAGE);
         }
         else{
-            JOptionPane.showMessageDialog(this,"Mensaje vacío","información"
+            JOptionPane.showMessageDialog(this,"Mensaje enviado","información"
                     , JOptionPane.INFORMATION_MESSAGE);
             this.txtMensaje.setText("");
             Mensaje mensaje = new Mensaje(user.getId(),this.chat.getId() ,this.txtMensaje.getText(),this.fechaEnvio.getTime());

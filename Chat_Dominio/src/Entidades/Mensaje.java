@@ -90,6 +90,14 @@ public class Mensaje {
         return idsUsuarios;
     }
 
+    public ObjectId getIdChat() {
+        return idChat;
+    }
+
+    public void setIdChat(ObjectId idChat) {
+        this.idChat = idChat;
+    }
+    
     public void setIdsUsuarios(List<ObjectId> idsUsuarios) {
         this.idsUsuarios = idsUsuarios;
     }

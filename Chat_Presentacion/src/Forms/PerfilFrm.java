@@ -227,6 +227,7 @@ public class PerfilFrm extends javax.swing.JFrame {
             Chat chat = validar.regresaChart(jtChats);
               JOptionPane.showMessageDialog(this,"Se accedió al char correctamente","Información"
                     , JOptionPane.INFORMATION_MESSAGE);
+              System.out.println("Idchat:" +chat.getId().toString());
             new ChatFrm(this.user, chat);
             this.dispose();
         }
